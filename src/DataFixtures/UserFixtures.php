@@ -22,11 +22,11 @@ class UserFixtures extends Fixture
     }
     public function load(ObjectManager $manager): void
     {
-        $user = new User();
-        $user->setUsername('admin');
-        $user->setPassword($this->encoder->encodePassword($user, 'admin'));
-        $manager->persist($user);
-
-        $manager->flush();
+//        $user = new User();
+//        $user->setUsername('admin');
+//        $user->setPassword($this->encoder->encodePassword($user, 'admin'));
+//        $manager->persist($user);
+//
+//        $manager->flush();
     }
 }
