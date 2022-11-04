@@ -6,6 +6,9 @@
 {% block body %}
     <div class="container mt-4">
         <h1>Gérer les biens</h1>
+        <div class="text-right">
+            <a class="btn btn-primary" href="{{ path('admin.property.new')}}">Créer un nouveau bien</a>
+        </div>
         {% for message in app.flashes('success') %}
         <div class="alert alert-success">
             {{ message }}
@@ -34,10 +37,10 @@
             {% endfor %}
             </tbody>
         </table>
+    </div>
 
-        <div class="text-right">
-            <a class="btn btn-primary" href="{{ path('admin.property.new')}}">Créer un nouveau bien</a>
-        </div>
+    <div class="pagination mt-1 text-right">
+        {{ knp_pagination_render(properties) }}
     </div>
 
 {% endblock %}

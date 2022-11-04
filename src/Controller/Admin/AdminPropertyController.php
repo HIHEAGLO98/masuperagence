@@ -2,13 +2,12 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Option;
 use App\Entity\Property;
 use App\Form\PropertyType;
 use App\Repository\PropertyRepository;
 
 use Doctrine\ORM\EntityManagerInterface;
-use phpDocumentor\Reflection\Types\This;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,9 +35,14 @@ class AdminPropertyController extends AbstractController
      * @Route("/admin", name="admin.property.index")
      * @return Response
      */
-    public function index():Response
+    public function index(PaginatorInterface $paginator, Request  $request):Response
     {
-        $properties = $this->repository->findAll();
+       // $properties = $this->repository->findAll();
+
+        $properties = $paginator->paginate(
+            $this->repository->findAll(),
+            $request->query->getInt('page', 1),
+            12);
 
         return $this->render('admin/property/index.html.twig', compact('properties'));
     }
@@ -74,13 +78,13 @@ class AdminPropertyController extends AbstractController
      */
     public function  edit(Property  $property, Request $request)
     {
-       /* $option = new Option();
-        $property->addOption($option);*/
-
         $form = $this->createForm(PropertyType::class, $property);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /*if($property->getImageFile() instanceof UploadedFile){
+                $cacheManager->remove($helper->asset($property, 'imageFile'));
+            }*/
             $this->em->flush();
             $this->addFlash('success', 'Bien modifié avec succès');
             return $this->redirectToRoute('admin.property.index');
