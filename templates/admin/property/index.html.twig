@@ -4,16 +4,16 @@
 {% block title 'Gérer les biens' %}
 
 {% block body %}
-    <div class="container mt-4">
+    <div class="container mb-4">
         <h1>Gérer les biens</h1>
-        <div class="text-right">
-            <a class="btn btn-primary" href="{{ path('admin.property.new')}}">Créer un nouveau bien</a>
-        </div>
         {% for message in app.flashes('success') %}
         <div class="alert alert-success">
             {{ message }}
         </div>
         {% endfor %}
+        <div class="text-right mb-2">
+            <a class="btn btn-primary" href="{{ path('admin.property.new')}}">Créer un nouveau bien</a>
+        </div>
 
         <table class="table table-striped">
             <thead>

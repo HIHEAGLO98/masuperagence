@@ -92,6 +92,7 @@ class PropertyController extends AbstractController
                 'id' => $property->getId(),
                'slug' => $property->getSlug()
             ]);
+           // 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
         }
 
         return $this->render('property/show.html.twig', [

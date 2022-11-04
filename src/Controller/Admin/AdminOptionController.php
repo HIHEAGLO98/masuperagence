@@ -36,6 +36,7 @@ class AdminOptionController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $optionRepository->add($option);
+            $this->addFlash('success','L\'option a été bien créée' );
             return $this->redirectToRoute('admin.option.index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -56,6 +57,7 @@ class AdminOptionController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $optionRepository->add($option);
+            $this->addFlash('success','L\'option a été bien modifiée' );
             return $this->redirectToRoute('admin.option.index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -72,6 +74,7 @@ class AdminOptionController extends AbstractController
     {
         if ($this->isCsrfTokenValid('admin/delete'.$option->getId(), $request->request->get('_token'))) {
             $optionRepository->remove($option);
+            $this->addFlash('success','L\'option a été bien supprimée' );
         }
 
         return $this->redirectToRoute('admin.option.index', [], Response::HTTP_SEE_OTHER);

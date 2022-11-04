@@ -3,13 +3,14 @@
 namespace App\Form;
 
 use App\Entity\Contact;
+use Grafikart\RecaptchaBundle\RecaptchaSubmitType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
 
 class ContactType extends AbstractType
 {
@@ -20,7 +21,10 @@ class ContactType extends AbstractType
             ->add('lastname', TextType::class)
             ->add('phone', TextType::class)
             ->add('email', EmailType::class)
-            ->add('message', TextareaType::class);
+            ->add('message', TextareaType::class)
+             ->add('captcha', RecaptchaSubmitType::class, [
+                 'label' => 'Envoyer'
+             ]);
     }
     public function configureOptions(OptionsResolver $resolver)
     {
@@ -29,9 +33,5 @@ class ContactType extends AbstractType
         ]);
     }
 
-    public function getBlockPrefix(): string
-    {
-        return '';
-    }
 
 }

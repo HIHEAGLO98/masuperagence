@@ -10,7 +10,7 @@
                 {{ message }}
             </div>
         {% endfor %}
-        {% if not %}
+        {% if not form.vars.valid %}
             <div class="alert alert-danger">
                 Veuillez remplir correctement les champs requis.
             </div>
@@ -21,7 +21,7 @@
                 {% if property.filename %}
                     <img src="{{ vich_uploader_asset(property, 'imageFile')}}" alt="card-img-top" style="width: 100%; height: auto;">
                 {%else %}
-                    <img src="{{ '/images/empty/BATIMENTS_006_Interior_View-03_small.jpg'}}" alt="card-img-top" style="width: 100%; height: auto;">
+                    <img src="{{ '/images/empty/empty.jpg'}}" alt="card-img-top" style="width: 100%; height: auto;">
                 {%endif %}
             </div>
             <div class="col-md-4">
