@@ -3,7 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Contact;
-use Grafikart\RecaptchaBundle\RecaptchaSubmitType;
+use Grafikart\RecaptchaBundle\Type\RecaptchaSubmitType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;

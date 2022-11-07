@@ -4,7 +4,6 @@ namespace App\Notification;
 
 use App\Entity\Contact;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
-use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Twig\Environment;
@@ -44,11 +43,10 @@ class ContactNotification
             ->to('contact@gmail.com')
             ->replyTo($contact->getEmail())
             ->subject('Je suis intéressé par votre Bien!')
-            ->text('Sending emails is fun again!')
+            //->text('Sending emails is fun again!')
             ->html($this->renderer->render('emails/contact.html.twig', [
                 'contact' => $contact,
             ]), 'text/html');
-
 
         $this->mailer->send($email);
 

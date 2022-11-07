@@ -5,7 +5,6 @@ namespace App\Controller\Admin;
 use App\Entity\Property;
 use App\Form\PropertyType;
 use App\Repository\PropertyRepository;
-
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -39,8 +38,7 @@ class AdminPropertyController extends AbstractController
     {
        // $properties = $this->repository->findAll();
 
-        $properties = $paginator->paginate(
-            $this->repository->findAll(),
+        $properties = $paginator->paginate($this->repository->findAll(),
             $request->query->getInt('page', 1),
             12);
 
@@ -61,7 +59,7 @@ class AdminPropertyController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->persist($property);
             $this->em->flush();
-            $this->addFlash('success', 'Bien créer avec succès');
+            $this->addFlash('success', 'Bien crée avec succès');
 
             return $this->redirectToRoute('admin.property.index');
         }
